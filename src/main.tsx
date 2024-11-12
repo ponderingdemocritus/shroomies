@@ -6,7 +6,7 @@ import App from "./App.tsx";
 import "./index.css";
 import { init } from "@dojoengine/sdk";
 import { Schema, schema } from "./bindings.ts";
-import { dojoConfig } from "../dojoConfig.ts";
+// import { dojoConfig } from "../dojoConfig.ts";
 import { DojoContextProvider } from "./DojoContext.tsx";
 import { setupBurnerManager } from "@dojoengine/create-burner";
 import { AccountProvider } from "./useAccount.tsx";
@@ -55,12 +55,12 @@ async function main() {
         redirectUri={REDIRECT_URI}
         rpcUrl={RPC_URL}
       >
-        <DojoContextProvider
+        {/* <DojoContextProvider
           burnerManager={await setupBurnerManager(dojoConfig)}
-        >
-          {/* <App sdk={sdk} /> */}
-          <div>Hello</div>
-        </DojoContextProvider>
+        > */}
+        {/* <App sdk={sdk} /> */}
+        <div>Hello</div>
+        {/* </DojoContextProvider> */}
       </AccountProvider>
     </StrictMode>
   );
