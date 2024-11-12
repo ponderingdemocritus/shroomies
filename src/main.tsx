@@ -19,52 +19,53 @@ import { KEYCHAIN_URL, POLICIES, REDIRECT_URI, RPC_URL } from "./config.ts";
  * @throws {Error} If initialization fails
  */
 async function main() {
-    const {
-        rpcUrl,
-        toriiUrl,
-        relayUrl,
-        manifest: {
-            world: { address: worldAddress },
-        },
-    } = dojoConfig;
+  //   const {
+  //     rpcUrl,
+  //     toriiUrl,
+  //     relayUrl,
+  //     manifest: {
+  //       world: { address: worldAddress },
+  //     },
+  //   } = dojoConfig;
 
-    const sdk = await init<Schema>(
-        {
-            client: {
-                rpcUrl,
-                toriiUrl,
-                relayUrl,
-                worldAddress,
-            },
-            domain: {
-                name: "WORLD_NAME",
-                version: "1.0",
-                chainId: "KATANA",
-                revision: "1",
-            },
-        },
-        schema
-    );
+  // const sdk = await init<Schema>(
+  //     {
+  //         client: {
+  //             rpcUrl,
+  //             toriiUrl,
+  //             relayUrl,
+  //             worldAddress,
+  //         },
+  //         domain: {
+  //             name: "WORLD_NAME",
+  //             version: "1.0",
+  //             chainId: "KATANA",
+  //             revision: "1",
+  //         },
+  //     },
+  //     schema
+  // );
 
-    createRoot(document.getElementById("root")!).render(
-        <StrictMode>
-            {/* AccountProvider is used to handle the account logic within telegram */}
-            <AccountProvider
-                keychainUrl={KEYCHAIN_URL}
-                policies={POLICIES}
-                redirectUri={REDIRECT_URI}
-                rpcUrl={RPC_URL}
-            >
-                <DojoContextProvider
-                    burnerManager={await setupBurnerManager(dojoConfig)}
-                >
-                    <App sdk={sdk} />
-                </DojoContextProvider>
-            </AccountProvider>
-        </StrictMode>
-    );
+  createRoot(document.getElementById("root")!).render(
+    <StrictMode>
+      {/* AccountProvider is used to handle the account logic within telegram */}
+      <AccountProvider
+        keychainUrl={KEYCHAIN_URL}
+        policies={POLICIES}
+        redirectUri={REDIRECT_URI}
+        rpcUrl={RPC_URL}
+      >
+        <DojoContextProvider
+          burnerManager={await setupBurnerManager(dojoConfig)}
+        >
+          {/* <App sdk={sdk} /> */}
+          <div>Hello</div>
+        </DojoContextProvider>
+      </AccountProvider>
+    </StrictMode>
+  );
 }
 
 main().catch((error) => {
-    console.error("Failed to initialize the application:", error);
+  console.error("Failed to initialize the application:", error);
 });
